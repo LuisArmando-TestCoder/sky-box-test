@@ -1,0 +1,89 @@
+.pagination {
+    --spacing: calc(var(--spacing-extra-small) * 2);
+    --displacement: calc(var(--spacing-small) / -2);
+
+
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &__item {
+        display: inline-block;
+        margin: 0 var(--spacing);
+        height: var(--spacing-small);
+        font-size: 14rem;
+
+        &--left,
+        &--right {
+            color: var(--main-color-background);
+            display: inline-flex;
+        }
+
+        &::before, &::after {
+            content: '';
+            width: 0;
+            opacity: 0;
+            display: inline-block;
+            position: initial;
+            pointer-events: none;
+            color: var(--main-color-background);
+        }
+
+        &--left::before,
+        &--right::after {
+            opacity: 1;
+            width: 0;
+            height: 0;
+            border: calc(var(--spacing-small) / 2) solid;
+            margin: 0 calc(var(--spacing) / 2);
+            line-height: var(--spacing-small);
+            transform: rotate(315deg) scale(.25);
+            position: relative;
+        }
+
+        &--left::before {
+            border-color: transparent
+                          var(--main-color-highlight)
+                          var(--main-color-highlight)
+                          transparent;
+            left: var(--displacement);
+        }
+
+        &--right::after {
+            border-color: var(--main-color-highlight)
+                          transparent
+                          transparent
+                          var(--main-color-highlight);
+            right: var(--displacement);
+        }
+    }
+
+    &__button {
+        cursor: pointer;
+        outline: none;
+        padding: 0;
+        height: var(--spacing-small);
+        background: transparent;
+        border: 0;
+        color: var(--color-ultra-light);
+        display: initial;
+
+        &:hover {
+            color: var(--main-color-highlight);
+        }
+
+        &--current {
+            display: inline-block;
+            min-width: var(--spacing-small);
+            padding: 0 var(--spacing-extra-small);
+            color: var(--color-lighter-dark);
+            background: var(--main-color-highlight);
+            box-shadow: var(--shadow-out-neomorphic);
+
+            &:hover {
+                color: var(--color-lighter-dark);
+            }
+        }
+    }
+}

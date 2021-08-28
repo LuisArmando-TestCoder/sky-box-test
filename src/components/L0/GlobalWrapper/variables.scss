@@ -1,0 +1,34 @@
+:root {
+    --font-title: "Major-Mono-Display";
+    --font-text: "Quicksand";
+
+    --font-size-extra-small: 8rem;
+    --font-size-small: 12rem;
+    --font-size-medium: 16rem;
+    --font-size-large: 24rem;
+    --font-size-extra-large: 44rem;
+
+    // https://chir.ag/projects/name-that-color/
+    --color-navy-blue: #120078;
+    --color-flirt: #9d0191;
+    --color-radical-red: #fd3a69;
+    --color-candlelight: #fecd1a;
+    --color-gallery: #f0f0f0;
+    --color-cod-gray: #111111;
+    --color-mine-shaft: #333333;
+    --color-silver-chalice: #AAAAAA;
+
+    --main-color-background: var(--color-gallery);
+    --main-color-background-blend: var(--color-silver-chalice);
+    --main-color-foreground: var(--color-cod-gray);
+    --main-color-foreground-blend: var(--color-mine-shaft);
+    --main-color-highlight: var(--color-flirt);
+    --main-color-danger: var(--color-radical-red);
+    --main-color-attention: var(--color-navy-blue);
+
+    --spacing-extra-small: 5rem;
+    --spacing-small: 25rem;
+    --spacing-medium: 50rem;
+    --spacing-large: 150rem;
+    --spacing-extra-large: 350rem;
+}

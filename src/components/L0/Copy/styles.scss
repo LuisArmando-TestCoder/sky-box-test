@@ -1,0 +1,41 @@
+.copy {
+    &--small {
+        font: var(
+            --font-size-small
+        ) var(
+            --font-text
+        );
+        line-height: calc(
+            var(
+                --font-size-small
+            ) * 1.5
+        );
+        font-weight: 300;
+    }
+
+    &--normal {
+        font: var(
+            --font-size-medium
+        ) var(
+            --font-text
+        );
+        font-weight: 200;
+    }
+
+    &--subtitle {
+        font: var(
+            --font-size-large
+        ) var(
+            --font-text
+        );
+        font-weight: 400;
+    }
+
+    &--title {
+        font: var(
+            --font-size-extra-large
+        ) var(
+            --font-title
+        );
+    }
+}
