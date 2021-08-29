@@ -1,10 +1,9 @@
-import * as THREE from 'three'
 import presetScene, { actions } from 'scene-preset'
 
 import pulseMaterial from './materials/pulse'
 import {
     getRitual, getColorfulBall
-} from './meshes/colorfulball'
+} from './meshes/colorfulBall'
 
 export default id => presetScene({
     setup({ scene }) {
