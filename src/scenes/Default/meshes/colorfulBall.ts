@@ -13,20 +13,20 @@ export function getColorfulBall({
 
 export function getRitual({
     material,
-    scale = 10,
+    scale = 100,
     amount = 7
 }): any {
     const group = new THREE.Group()
 
-    for (let i = 0; i < amount; i++) {
+    for (let index = 0; index < amount; index++) {
         const getWave = waveFunction => Math[waveFunction](
-            i / amount * Math.PI * 2
+            index / amount * Math.PI * 2
         ) * (scale * (amount / 2))
 
         group.add(
             getColorfulBall({
                 material,
-                scale: scale,
+                scale,
                 y: scale,
                 z: getWave('sin'),
                 x: getWave('cos')
