@@ -3,6 +3,12 @@ import * as THREE from 'three'
 import defaultFragmentShader from '../../shaders/fragment/default'
 import defaultVertexShader from '../../shaders/vertex/default'
 
+interface Vector3D {
+    x?: number
+    y?: number
+    z?: number
+}
+
 export default (
     {
         amount = 1,
@@ -12,7 +18,8 @@ export default (
         geometry,
         name = 'generated',
         vertexShader = defaultVertexShader,
-        fragmentShader = defaultFragmentShader
+        fragmentShader = defaultFragmentShader,
+        size = {x: 1, y: 1, z: 1}
     }: {
         amount?: number
         setupChildPosition?: (
@@ -20,16 +27,8 @@ export default (
             amount: number,
             mesh: THREE.Object3D
         ) => ({
-            position?: {
-                x?: number
-                y?: number
-                z?: number
-            }
-            rotation?: {
-                x?: number
-                y?: number
-                z?: number
-            }
+            position?: Vector3D
+            rotation?: Vector3D
         })
         setupGroup?: (
             group: THREE.Group,
@@ -40,6 +39,7 @@ export default (
         fragmentShader?: string
         geometry?: THREE.BufferGeometry
         name?: string
+        size?: Vector3D
     }
 ) => {
     const group = new THREE.Group()
@@ -47,7 +47,7 @@ export default (
     group.name = name
 
     const currentGeometry = geometry ?? new THREE.BoxBufferGeometry(
-        1, 1, 1
+        size.x || 1, size.y || 1, size.z || 1
     )
     const currentMaterial = material ?? new THREE.ShaderMaterial({
         fragmentShader, vertexShader

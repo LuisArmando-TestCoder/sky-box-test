@@ -39,10 +39,10 @@ export default id => presetScene({
 		)
         scene.add(simpleRitual)
         scene.add(simpleBall)
-		console.log(simpleBall)
         scene.add(walkPath as any)
         scene.add(getColorfulBall({
-			material: pulseMaterial, scale: 1750
+			material: pulseMaterial,
+			scale: 1750
 		}))
         actions.setUniforms( pulseMaterial as any )
     },
