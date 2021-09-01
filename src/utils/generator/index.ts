@@ -88,7 +88,11 @@ export default (
     setupGroup?.(group, mesh)
 
     return {
+        currentGeometry,
+        currentMaterial,
+        mesh,
         group,
+        amount,
         frame(
             callback: (
                 value: THREE.Object3D,

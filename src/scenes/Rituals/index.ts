@@ -11,7 +11,7 @@ import { getWalkPath } from '../../meshes/walkPath'
 
 import { setGravityOfGroupAroundPosition } from '../../frame/gravity'
 
-const position = {x: 585, y: 330, z: 1000}
+const position = {x: 582, y: 365, z: 1000}
 
 const simpleBall = getSimpleBall({
     material: simpleMaterial,
@@ -33,8 +33,8 @@ export default id => presetScene({
         scene.add(
 			getRitual({
 				material: pulseMaterial,
-				scale: 100,
-				offset: 0.55
+				scale: 3,
+				offset: 0.575
 			})
 		)
         scene.add(simpleRitual)

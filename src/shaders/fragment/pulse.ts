@@ -8,7 +8,7 @@ float getHillPattern(float x) {
 }
  
 void main() {
-    vec2 uv = fragCoord.xy/iResolution.xy-.5;
+    vec2 uv = fragCoord.xy/vec2(1680., 1050.)-.5;
 
     vec3 col = (
         getHillPattern((uv.x/uv.y+iTime/10.)*10.)

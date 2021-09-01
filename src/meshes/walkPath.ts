@@ -1,5 +1,4 @@
 import generator from '../utils/generator'
-import fragmentShader from '../shaders/fragment/default'
 
 export function getWalkPath(
     position: {
@@ -20,7 +19,6 @@ export function getWalkPath(
     const wobbleScale = 0.1
 
     const {group: walkPath} = generator({
-        fragmentShader,
         amount: Math.floor(distance) / spacing,
         setupChildPosition(index, amount) {
             const currentDistance = (index / amount * distance)
