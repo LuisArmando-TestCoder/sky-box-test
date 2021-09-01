@@ -14,13 +14,14 @@ export function getColorfulBall({
 export function getRitual({
     material,
     scale = 100,
-    amount = 7
+    amount = 7,
+    offset = 0
 }): any {
     const group = new THREE.Group()
 
     for (let index = 0; index < amount; index++) {
         const getWave = waveFunction => Math[waveFunction](
-            index / amount * Math.PI * 2
+            index / amount * Math.PI * 2 + offset
         ) * (scale * (amount / 2))
 
         group.add(
