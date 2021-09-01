@@ -4,10 +4,16 @@
 
 `gatsby new your-app-name https://github.com/LuisArmando-TestCoder/Scene-Preset-Gatsby-Template`
 
+## Create automatic scene
+
+`cd your-app-name/utils`
+`py scene.py`
+`py exports.py`
+
 ## Generate automatic file exports in TypeScript with Python
 
 `cd your-app-name/utils`
-`py generate-exports.py`
+`py exports.py`
 
 ## Start project
 

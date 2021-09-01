@@ -7,7 +7,7 @@ def getIndexExportContent(directories, additional):
     exportSuffix = 'export {\n'
  
     for directory in directories:
-        importPrefix += f'import {additional} {directory} from \'./{directory}\'\n'
+        importPrefix += f'import {additional}{directory} from \'./{directory}\'\n'
         exportSuffix += f'   {directory},\n'
  
     exportSuffix += '}\n'
@@ -54,4 +54,4 @@ setFolderExports([
 setFolderExports([
     'components',
     'objects',
-], '* as')
+], '* as ')

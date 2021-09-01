@@ -21,6 +21,7 @@ export function getSimpleRitual({
     material,
     scale = 1,
     amount = 7,
+    distanceFromCenter = 50,
     x = 0, y = 0, z = 0
 }): any {
     const group = new THREE.Group()
@@ -28,7 +29,7 @@ export function getSimpleRitual({
     for (let index = 0; index < amount; index++) {
         const getWave = waveFunction => Math[waveFunction](
             index / amount * Math.PI * 2
-        ) * 500
+        ) * distanceFromCenter
 
         group.add(
             getSimpleBall({

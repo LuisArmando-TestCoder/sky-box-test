@@ -1,4 +1,4 @@
-import  LoadStateWrapper from './LoadStateWrapper'
+import LoadStateWrapper from './LoadStateWrapper'
 
 export {
    LoadStateWrapper,

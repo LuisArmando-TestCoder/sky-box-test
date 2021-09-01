@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 import fragmentShader from '../shaders/fragment/pulse'
-import vertexShader from '../shaders/vertex/base'
+import vertexShader from '../shaders/vertex/default'
 
 export default new THREE.ShaderMaterial({
     fragmentShader,
