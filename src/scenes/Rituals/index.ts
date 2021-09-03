@@ -26,7 +26,15 @@ const simpleRitual = getSimpleRitual({
     scale: 1
 })
 
-const walkPath = getWalkPath(position)
+const destinations = [
+	position,
+	{x: -10, z: -30, y: 0},
+	{x: 0, z: 300, y: 0},
+	{x: 50, z: -50, y: 0},
+	{x: -50, z: 50, y: 0},
+].map(position => (
+	getWalkPath({position})
+))
 
 export default id => presetScene({
     setup({ scene }) {
@@ -34,12 +42,15 @@ export default id => presetScene({
 			getRitual({
 				material: pulseMaterial,
 				scale: 3,
-				offset: 0.575
+				offset: 0.575,
+				y: 5
 			})
 		)
         scene.add(simpleRitual)
         scene.add(simpleBall)
-        scene.add(walkPath as any)
+		destinations.forEach(destination => {
+			scene.add(destination as any)
+		})
         scene.add(getColorfulBall({
 			material: pulseMaterial,
 			scale: 1750

@@ -60,28 +60,30 @@ export default (
 
             childMesh.name = `${name}-child`
 
-            const {position, rotation} =(
-                setupChildPosition?.(
-                    index, amount, childMesh
-                ) || {
-                    position: {x: 0, y: 0, z: 0},
-                    rotation: {x: 0, y: 0, z: 0}
-                }
+            const coordinates = setupChildPosition?.(
+                index, amount, childMesh
             )
 
-            childMesh.position.set(
-                position.x || 0,
-                position.y || 0,
-                position.z || 0,
-            )
+            if (coordinates) {
+                const {
+                    position,
+                    rotation
+                } = coordinates
 
-            childMesh.rotation.set(
-                rotation.x || 0,
-                rotation.y || 0,
-                rotation.z || 0,
-            )
-
-            group.add(childMesh)
+                childMesh.position.set(
+                    position.x || 0,
+                    position.y || 0,
+                    position.z || 0,
+                )
+    
+                childMesh.rotation.set(
+                    rotation.x || 0,
+                    rotation.y || 0,
+                    rotation.z || 0,
+                )
+    
+                group.add(childMesh)
+            }
         }
     }
 

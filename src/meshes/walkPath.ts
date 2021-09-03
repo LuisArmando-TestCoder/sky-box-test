@@ -30,41 +30,42 @@ function getWobbledPosition({
     }
 }
 
-export function getWalkPath(
-    position: {
-        x: number,
-        y: number,
-        z: number
-    }
-) {
-    const center = {x: 0, y: 0, z: 0}
+export function getWalkPath({
+    position,
+    origin = {x: 0, y: 0, z: 0},
+    wobbleScale = 0.1
+}: {
+    position: Vector3D,
+    origin?: Vector3D,
+    wobbleScale?: number
+}) {
     const distances = {
-        x: position.x - center.x,
-        y: position.y - center.y,
-        z: position.z - center.z,
+        x: position.x - origin.x,
+        y: position.y - origin.y,
+        z: position.z - origin.z,
     }
     const distance = Math.sqrt(distances.x ** 2 + distances.z ** 2)
     const spacing = 2 // * times size of element -> unless size is 1
-    const wobbleScale = 0.1
 
     const {group: walkPath} = generator({
-        size: {y: .1},
+        size: {y: .1, x: 3},
         amount: Math.floor(distance) / spacing,
         setupChildPosition(index, amount) {
-            const getCurrentPosition = index => getWobbledPosition({
-                amount, index, wobbleScale, distance, distances,
-            })
-            const currentPosition = getCurrentPosition(index)
-            const nextPosition = getCurrentPosition(index + 1)
-            
+            if (index > 2) {
+                const getCurrentPosition = index => getWobbledPosition({
+                    amount, index, wobbleScale, distance, distances,
+                })
+                const currentPosition = getCurrentPosition(index)
+                const nextPosition = getCurrentPosition(index + 1)
 
-            return {
-                position: currentPosition,
-                rotation: {
-                    y: Math.atan2(
-                        currentPosition.x - nextPosition.x,
-                        currentPosition.z - nextPosition.z
-                    )
+                return {
+                    position: currentPosition,
+                    rotation: {
+                        y: Math.atan2(
+                            currentPosition.x - nextPosition.x,
+                            currentPosition.z - nextPosition.z
+                        )
+                    }
                 }
             }
         },
