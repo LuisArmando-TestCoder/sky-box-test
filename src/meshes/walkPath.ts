@@ -1,4 +1,4 @@
-import generator from '../utils/generator'
+import { consulters } from 'scene-preset'
 
 interface Vector3D {
     x?: number
@@ -47,7 +47,7 @@ export function getWalkPath({
     const distance = Math.sqrt(distances.x ** 2 + distances.z ** 2)
     const spacing = 2 // * times size of element -> unless size is 1
 
-    const {group: walkPath} = generator({
+    const {group: walkPath} = consulters.getAssembledMeshesGroup({
         size: {y: .1, x: 3},
         amount: Math.floor(distance) / spacing,
         setupChildPosition(index, amount) {
