@@ -51,7 +51,7 @@ export function getWalkPath({
         size: {y: .1, x: 3},
         amount: Math.floor(distance) / spacing,
         setupChildPosition(index, amount) {
-            if (index > 2) {
+            if (index > 3 && index < amount - 3) {
                 const getCurrentPosition = index => getWobbledPosition({
                     amount, index, wobbleScale, distance, distances,
                 })

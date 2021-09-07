@@ -2,14 +2,18 @@ import * as THREE from 'three'
 
 export function getSimpleBall({
     material,
-    x, y, z,
+    position,
     velocity = {x: 0, y: 0, z: 0},
     scale = 1
 }) {
     const geometry = new THREE.SphereBufferGeometry(scale, scale, scale)
     const mesh = new THREE.Mesh(geometry, material)
 
-    mesh.position.set(x, y, z)
+    mesh.position.set(
+        position.x,
+        position.y,
+        position.z
+    )
 
     mesh['velocity'] = velocity
     mesh['radius'] = scale
@@ -35,9 +39,11 @@ export function getSimpleRitual({
             getSimpleBall({
                 material,
                 scale,
-                x: getWave('sin') + x,
-                y: getWave('cos') + y,
-                z,
+                position: {
+                    x: getWave('sin') + x,
+                    y: getWave('cos') + y,
+                    z,
+                }
             })
         )
     }

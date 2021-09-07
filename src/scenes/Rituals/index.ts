@@ -8,16 +8,12 @@ import simpleMaterial from '../../materials/simple'
 import { getRitual, getColorfulBall } from '../../meshes/colorfulBall'
 import { getSimpleRitual, getSimpleBall } from '../../meshes/simpleBall'
 import { getWalkPath } from '../../meshes/walkPath'
+import { getCubesCube } from '../../meshes/cubesCube'
+import { getCustomGeometry } from '../../meshes/customGeometry'
 
 import { setGravityOfGroupAroundPosition } from '../../frame/gravity'
 
-const position = {x: 582 / 4, y: 0, z: 1000 / 4}
-
-const simpleBall = getSimpleBall({
-    material: simpleMaterial,
-    ...position,
-    scale: 10,
-}) as any
+const position = {x: 582 / 10, y: 0, z: 1000 / 10}
 
 const simpleRitual = getSimpleRitual({
     amount: 100,
@@ -27,18 +23,32 @@ const simpleRitual = getSimpleRitual({
 })
 
 const destinations = [
-	position,
-	{x: -10, z: -30, y: 0},
-	{x: 0, z: 300, y: 0},
-	{x: 50, z: -50, y: 0},
-	{x: -50, z: 50, y: 0},
-].map(position => (
-	getWalkPath({position})
-))
+	{
+		properties: {
+			material: simpleMaterial,
+			position,
+			scale: 10,
+		},
+		factories: [getSimpleBall, getWalkPath]
+	},
+	{
+		properties: {
+			position: {x: 10, z: -30, y: 0},
+		},
+		factories: [getWalkPath, getCubesCube]
+	},
+	{
+		properties: {
+			position: {x: -50, z: -50, y: 0},
+		},
+		factories: [getWalkPath, getCustomGeometry]
+	},
+].map(({properties, factories}) => (
+	factories.map(factory => factory(properties))
+)).flat()
 
 export default id => presetScene({
     setup({ scene }) {
-		console.log(scene)
         scene.add(
 			getRitual({
 				material: pulseMaterial,
@@ -48,7 +58,6 @@ export default id => presetScene({
 			})
 		)
         scene.add(simpleRitual)
-        scene.add(simpleBall)
 		destinations.forEach(destination => {
 			scene.add(destination as any)
 		})
@@ -58,7 +67,7 @@ export default id => presetScene({
 		}))
         actions.setUniforms( pulseMaterial as any )
     },
-	animate({ scene }) {
+	animate() {
 		setGravityOfGroupAroundPosition(simpleRitual, {
 			position, radius: .01
 		})
