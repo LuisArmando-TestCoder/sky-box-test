@@ -44,7 +44,7 @@ const destinations = [
 		properties: {
 			material: simpleMaterial,
 			position,
-			scale: 10,
+			scale: 3,
 		},
 		factories: [getSimpleBall, getWalkPath]
 	},
@@ -60,6 +60,13 @@ const destinations = [
 		},
 		factories: [getWalkPath, getCustomGeometry]
 	},
+	{
+		properties: {
+			material: pulseMaterial,
+			scale: 1750
+		},
+		factories: [getColorfulBall]
+	}
 ].map(({properties, factories}) => (
 	factories.map(factory => factory(properties))
 )).flat()
@@ -70,10 +77,6 @@ export default id => presetScene({
 		destinations.forEach(destination => {
 			scene.add(destination as any)
 		})
-        scene.add(getColorfulBall({
-			material: pulseMaterial,
-			scale: 1750
-		}))
         actions.setUniforms( pulseMaterial as any )
     },
 	animate() {
