@@ -10,12 +10,13 @@ import { getSimpleRitual, getSimpleBall } from '../../meshes/simpleBall'
 import { getWalkPath } from '../../meshes/walkPath'
 import { getCubesCube } from '../../meshes/cubesCube'
 import { getCustomGeometry } from '../../meshes/customGeometry'
+import { getFence } from '../../meshes/fence'
 
 import { setGravityOfGroupAroundPosition } from '../../frame/gravity'
 
 const position = {x: 582 / 10, y: 0, z: 1000 / 10}
 
-const simpleRitual = getSimpleRitual({
+const gravityParticles = getSimpleRitual({
     amount: 100,
     material: simpleMaterial,
     ...position,
@@ -23,6 +24,22 @@ const simpleRitual = getSimpleRitual({
 })
 
 const destinations = [
+	{
+		properties: {
+			position: {x: -50, z: 0, y: 0},
+			width: 10
+		},
+		factories: [getFence, getWalkPath]
+	},
+	{
+		properties: {
+			material: pulseMaterial,
+			scale: 1,
+			offset: 0.575,
+			position: {x: 50, z: -10, y: 0}
+		},
+		factories: [getRitual, getWalkPath]
+	},
 	{
 		properties: {
 			material: simpleMaterial,
@@ -49,15 +66,7 @@ const destinations = [
 
 export default id => presetScene({
     setup({ scene }) {
-        scene.add(
-			getRitual({
-				material: pulseMaterial,
-				scale: 3,
-				offset: 0.575,
-				y: 5
-			})
-		)
-        scene.add(simpleRitual)
+        scene.add(gravityParticles)
 		destinations.forEach(destination => {
 			scene.add(destination as any)
 		})
@@ -68,7 +77,7 @@ export default id => presetScene({
         actions.setUniforms( pulseMaterial as any )
     },
 	animate() {
-		setGravityOfGroupAroundPosition(simpleRitual, {
+		setGravityOfGroupAroundPosition(gravityParticles, {
 			position, radius: .01
 		})
 	}

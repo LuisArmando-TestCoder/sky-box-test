@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 import { consulters } from 'scene-preset'
 
 interface Vector3D {
@@ -48,6 +49,7 @@ export function getWalkPath({
     const spacing = 2 // * times size of element -> unless size is 1
 
     const {group: walkPath} = consulters.getAssembledMeshesGroup({
+        material: new THREE.MeshStandardMaterial({ color: '#e5e5e5' }) as any,
         size: {y: .1, x: 3},
         amount: Math.floor(distance) / spacing,
         setupChildPosition(index, amount) {

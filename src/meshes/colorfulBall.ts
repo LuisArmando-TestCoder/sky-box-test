@@ -16,7 +16,7 @@ export function getRitual({
     scale = 100,
     amount = 7,
     offset = 0,
-    y = 10
+    position = {x: 0, y: 0, z: 0}
 }): any {
     const group = new THREE.Group()
 
@@ -29,9 +29,9 @@ export function getRitual({
             getColorfulBall({
                 material,
                 scale,
-                y: scale + y,
-                z: getWave('sin'),
-                x: getWave('cos')
+                y: scale + position.y,
+                z: getWave('sin') + position.z,
+                x: getWave('cos') + position.x
             })
         )
     }
