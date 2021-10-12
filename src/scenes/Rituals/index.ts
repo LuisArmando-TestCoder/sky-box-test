@@ -1,6 +1,4 @@
-import * as THREE from 'three'
-
-import presetScene, { actions } from 'scene-preset'
+import presetScene from 'scene-preset'
 
 import pulseMaterial from '../../materials/pulse'
 import simpleMaterial from '../../materials/simple'
@@ -77,7 +75,6 @@ export default id => presetScene({
 		destinations.forEach(destination => {
 			scene.add(destination as any)
 		})
-        actions.setUniforms( pulseMaterial as any )
     },
 	animate() {
 		setGravityOfGroupAroundPosition(gravityParticles, {

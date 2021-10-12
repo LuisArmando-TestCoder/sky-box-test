@@ -1,6 +1,16 @@
-import presetScene, { consulters } from 'scene-preset'
+import presetScene, { consulters, actions } from 'scene-preset'
+import { getColorfulBall } from '../../meshes/colorfulBall'
+
+
+import pulseMaterial from '../../materials/pulse'
 
 export default id => presetScene({
+    setup({scene}) {
+        actions.setUniforms( pulseMaterial as any )
+        scene.add(
+            getColorfulBall({ material: pulseMaterial, scale: 1750 })
+        )
+    },
     animate({ scene, canvasSelector }) {
         const canvasState = consulters.getCanvasState(canvasSelector)
 

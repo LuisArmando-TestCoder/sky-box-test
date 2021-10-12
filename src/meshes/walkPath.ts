@@ -13,21 +13,23 @@ function getWobbledPosition({
     wobbleScale,
     distance,
     distances,
+    origin
 }: {
     amount: number
     index: number
     wobbleScale: number
     distance: number
     distances: Vector3D
+    origin: Vector3D
 }) {
     const mainAngle = Math.atan2(distances.x, distances.z)
     const currentDistance = (index / amount * distance)
     const wobble = Math.sin(index / amount * 2 * Math.PI) * wobbleScale
 
     return {
-        x: Math.sin(mainAngle + wobble) * currentDistance,
-        y: index / amount * distances.y,
-        z: Math.cos(mainAngle + wobble) * currentDistance
+        x: Math.sin(mainAngle + wobble) * currentDistance + origin.x,
+        y: index / amount * distances.y + origin.y,
+        z: Math.cos(mainAngle + wobble) * currentDistance + origin.z
     }
 }
 
@@ -53,13 +55,13 @@ export function getWalkPath({
         size: {y: .1, x: 3},
         amount: Math.floor(distance) / spacing,
         setupChildPosition(index, amount) {
-            if (index > 3 && index < amount - 3) {
+            if (index > 1 || index < amount - 2) {
                 const getCurrentPosition = index => getWobbledPosition({
-                    amount, index, wobbleScale, distance, distances,
+                    amount, index, wobbleScale, distance, distances, origin
                 })
                 const currentPosition = getCurrentPosition(index)
                 const nextPosition = getCurrentPosition(index + 1)
-
+    
                 return {
                     position: currentPosition,
                     rotation: {
