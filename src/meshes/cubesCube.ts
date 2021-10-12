@@ -1,17 +1,19 @@
 import * as THREE from 'three'
-import getProceduralGroup from '../utils/getProceduralGroup'
+import {consulters} from 'scene-preset'
 
 export const getCubesCube = ({position}) => {
-    const cubesCube = getProceduralGroup([
+    const cubesCube = consulters.getProceduralGroup([
         {
-            geometry: new THREE.BoxBufferGeometry(.5, .5, .5),
-            getPropertiesFactory: () => ({
-                position: {
-                    x: indices => indices[0],
-                    y: indices => indices[1],
-                    z: indices => indices[2],
-                }
-            }),
+            geometry: new THREE.BoxBufferGeometry(.5, .5, .5) as any,
+            getIntersectionMesh(indices, mesh) {
+                mesh.position.set(
+                    indices[0],
+                    indices[1],
+                    indices[2]
+                )
+
+                return mesh
+            },
             dimensions: [3, 3, 3]
         }
     ])

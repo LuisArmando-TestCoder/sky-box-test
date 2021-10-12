@@ -5,7 +5,9 @@ export default () => {
   return (
     <Components.L0.GlobalWrapper title='Home'>
       <Components.L1.Canvas3D
-        scenes={['Default', 'Rituals']}
+        scenes={['Default', 'Rituals', 
+        'Character'
+      ]}
         id='MainScene'
       />
     </Components.L0.GlobalWrapper>
